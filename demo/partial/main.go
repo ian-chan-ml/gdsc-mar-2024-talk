@@ -24,6 +24,8 @@ func NewServer() *Server {
 
 func (s *Server) rolldice(c *gin.Context) {
 	n := s.rand.Intn(6) + 1
+	time.Sleep(time.Duration(n/2) * time.Second) // Simulate delay
+
 	logger.Info("rolldice called", zap.Int("dice", n))
 	c.String(200, fmt.Sprintf("%v", n))
 }

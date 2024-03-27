@@ -24,7 +24,7 @@ services:
   go-auto:
     depends_on:
       - rolldice
-    image: otel/autoinstrumentation-go:v0.10.0-alpha
+    image: otel/autoinstrumentation-go:v0.10.1-alpha
     privileged: true
     pid: "host"
     environment:
