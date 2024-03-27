@@ -14,7 +14,7 @@ module "instance_template" {
   project_id      = var.project_id
   service_account = var.service_account
 
-  machine_type = "e2-standard-2"
+  machine_type = "e2-standard-4"
   disk_size_gb = "80"
   disk_type    = "pd-ssd"
 

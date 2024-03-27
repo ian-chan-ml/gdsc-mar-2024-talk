@@ -22,8 +22,9 @@ systemctl enable docker
 # Add the current user to the docker group
 # Note: This will take effect at the next login. You might want to log out and log back in or use 'newgrp docker' in the same session.
 groupadd docker
-usermod -aG docker $USER
+sudo usermod -aG docker $USER
+sudo usermod -aG docker quanianitis
 
-newgrp docker
+sudo newgrp docker
 
 git clone https://github.com/ian-chan-ml/gdsc-mar-2024-talk.git
