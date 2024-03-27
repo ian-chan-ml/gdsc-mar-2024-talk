@@ -4,11 +4,8 @@
 yum update -y
 
 # Install required packages
-yum install -y \
-    yum-plugin-config-manager \
-    git \
-    curl
-
+yum install -y yum-plugin-config-manager git curl make 
+    
 # Add the Docker repository
 yum config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
 
