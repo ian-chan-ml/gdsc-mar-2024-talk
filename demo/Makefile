@@ -9,7 +9,7 @@ ssh:
 
 # Target for port forwarding
 port-forward:
-	gcloud compute ssh --zone "asia-southeast1-b" "gdsc-mar-2024-001" --project "gdsc-mar-2024" --ssh-key-file=~/.ssh/id_ed25519 -- -NL 8080:localhost:16686
+	gcloud compute ssh --zone "asia-southeast1-b" "gdsc-mar-2024-001" --project "gdsc-mar-2024" --ssh-key-file=~/.ssh/id_ed25519 -- -NL 8080:localhost:8080 -NL 16686:localhost:16686
 
 # Target for authentication
 login:
