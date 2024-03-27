@@ -25,3 +25,5 @@ groupadd docker
 usermod -aG docker $USER
 
 newgrp docker
+
+git clone https://github.com/ian-chan-ml/gdsc-mar-2024-talk.git
