@@ -12,9 +12,10 @@ services:
   rolldice:
     depends_on:
       - jaeger
-    build:
-      context: .
-      dockerfile: ./Dockerfile
+    # build:
+    #   context: .
+    #   dockerfile: ./Dockerfile
+    image: rolldice-partial:20
     pid: "host"
     ports:
       - "8080:8080"
