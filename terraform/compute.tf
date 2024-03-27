@@ -2,6 +2,10 @@ locals {
   startup_script_content = file("${path.module}/startup.sh")
 }
 
+resource "google_compute_address" "ip_address" {
+  name = "external-ip"
+}
+
 module "instance_template" {
   source  = "terraform-google-modules/vm/google//modules/instance_template"
   version = "~> 11.0"
@@ -16,6 +20,13 @@ module "instance_template" {
 
   startup_script = local.startup_script_content
   subnetwork     = var.subnetwork
+  access_config = [{
+    nat_ip       = google_compute_address.ip_address.address
+    network_tier = "PREMIUM"
+  }]
+  tags = ["http-server", "https-server"]
+
+  depends_on = [google_compute_address.ip_address]
 }
 
 module "compute_instance" {
@@ -24,8 +35,8 @@ module "compute_instance" {
 
   region            = var.region
   zone              = var.zone
+  subnetwork        = var.subnetwork
   num_instances     = var.num_instances
   hostname          = "gdsc-mar-2024"
   instance_template = module.instance_template.self_link
 }
-
