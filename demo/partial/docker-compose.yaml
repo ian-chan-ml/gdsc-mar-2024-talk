@@ -5,6 +5,9 @@ networks:
     name: roll
     driver: bridge
 
+volumes:
+  shared-volume:
+
 services:
   rolldice:
     depends_on:
@@ -17,12 +20,11 @@ services:
       - "8080:8080"
     volumes:
       - /proc:/host/proc
+      - shared-volume:/app
   go-auto:
     depends_on:
       - rolldice
-    build:
-      context: ../..
-      dockerfile: Dockerfile
+    image: otel/autoinstrumentation-go
     privileged: true
     pid: "host"
     environment:
@@ -32,6 +34,7 @@ services:
       - OTEL_PROPAGATORS=tracecontext,baggage
     volumes:
       - /proc:/host/proc
+      - shared-volume:/app
 
   jaeger:
     image: jaegertracing/all-in-one:latest
